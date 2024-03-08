@@ -1,0 +1,103 @@
+In questo programma sono presenti diversi errori sia a livello di logica/sintassi che a livello di forma / indentazione.
+
+ERRORI DI LOGICA/SINTASSI:
+
+1)    Riga 12, la dichiarazione della variabile char "scelta" non è inizializzata/valorizzata nel modo corretto, 
+      non è corretto inserirla tra le parentesi graffe, ma si dovrebbbe scrivere in questa maniera: char scelta = '\0';
+
+2.1)  Riga 14, in scanf, la variabile in input "scelta" è di tipo char, non va quindi inserito "%d" che si utilizza per le variabili di tipo
+      int, ma "%c" che si utilizza appunto per le variabili char;
+ 
+2.2)  Riga 14, non è presente lo spazio prima di "%c", la sintassi corretta è : scanf(" %c", &scelta), facendo così si evitano diverse
+      problematiche relative all'input dell'utente, come caratteri non richiesti come /n o altro durante la digitazione; 
+
+3)    Riga 45, nella dichiarazione delle variabili, scrivendo "a,b = 0" stiamo inizializzando a 0 solamente la variabile b, se si voleva 
+      inizializzare entrambe le variabili = 0, è un errore, il modo corretto sarebbe stato così: short int a = 0, b = 0;
+
+4.1)  Riga 47, in scanf, la variabile in input "a" è di tipo short int, non va quindi inserito "%f" che si utilizza per le variabili di tipo 
+      float, ma "%hd" che si utilizza appunto per le variabili di questo tipo;
+
+4.2)  Riga 47, non è presente lo spazio prima di "%", la sintassi corretta è : scanf(" %hd", &a), facendo così si evitano diverse
+      problematiche relative all'input dell'utente, come caratteri non richiesti come /n o altro durante la digitazione; 
+
+5.1)  Riga 48, in scanf, la variabile in input "b" è di tipo short int, non va quindi inserito "%d" che si utilizza per le variabili di tipo
+      intero, ma "%hd" che si utilizza appunto per le variabili di questo tipo;
+
+5.2)  Riga 48, non è presente lo spazio prima di "%", la sintassi corretta è : scanf(" %hd", &b), facendo così si evitano diverse
+      problematiche relative all'input dell'utente, come caratteri non richiesti come /n o altro durante la digitazione;
+  
+6)    Riga 50, la variabile "prodotto" è dichiarata con il tipo variabile short int, questo potrebbe dare errori di risultato, in quanto se 
+      l'utente inserisce un numero con il massimo dei valori sia per la variabile "a" che per la variabile "b", otterrebbe un valore che è 
+      fuori dal range dispobinile dalla variabile di tipo short int, sarebbe quindi corretto dichiararla di tipo int, in alternativa si 
+      potrebbe anche "castare" il prodotto in variabile int, ossia: int prodotto = (int)a * b;
+
+7)    Riga 52, anche qui sono presenti degli errori all'interno del comando printf, da correggere i primi 2 "%d" con "%hd", corretto invece il 
+      terzo seguendo il ragionamento del punto 9;
+
+8)    Riga 58, stesso errore spiegato nel punto 4, è stata inizializzata solo la variabile b = 0;
+
+9)    Riga 60, non è presente lo spazio prima di "%d", la sintassi corretta è : scanf(" %d", &a), facendo così si evitano diverse
+      problematiche relative all'input dell'utente, come caratteri non richiesti come /n o altro durante la digitazione; 
+
+10)   Riga 62, non è presente lo spazio prima di "%d", la sintassi corretta è : scanf(" %d", &b), facendo così si evitano diverse
+      problematiche relative all'input dell'utente, come caratteri non richiesti come /n o altro durante la digitazione;
+
+11.1) Riga 64, la variabile "divisione" è dichiarata di tipo int, ed è sbagliato in quanto per avere un risultato corretto è necessario
+      dichiarare la variabile di tipo float per poter gestire i numeri con la virgola; 
+
+11.2) Riga 64, il simbolo corretto per la divisione è "/" non il simbolo "%" ossia l'operatore per il modulo che è il resto che si ottiene da
+      una divisione tra 2 numeri;
+
+11.3) Riga 64, non è possibile dividere per 0 e non è stata prevista la casistica, bisogna quindi introdurre un controllo sul denominatore che
+      impedisca all'utente di inserirlo mostrando un messaggio di errore, inserendo un ciclo do/while si potrebbe gestire questa casistica senza
+      dover terminare l'esecuzione del programma;
+
+12)   Riga 77, non è previsto un controllo sulla variabile "stringa" nel caso in cui l'input inserito abbia più di 10 caratteri, questo 
+      potrebbe anche creare problemi di overflow, sarebbe più corretto quindi scrivere: scanf("%9s", stringa )
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+ERRORI DI FORMA/INDENTAZIONE:
+
+1)    Riga 3,4,5,6, sarebbe più corretto eliminare lo spazio tra le funzioni e le parentesi() es: void menu();
+
+2)    Riga 13, uguale a quanto detto sopra, meglio eliminare lo spazio tra funzione e parentesi();
+
+3)    Riga 18,21,24, nei vari casi dello switch non è stato concepito un controllo per input corretto in forma minuscola, sarebbe meglio
+      inserire ad esempio una conversione mediante l'utilizzo di "toupper" sulla variabile "scelta" primo del comando switch, che converta i
+      caratteri in maiuscolo, in questo caso dev'essere però inserito l'header <ctype.h>, oppure gestiti tutti i case anche per le varianti 
+      minuscole "a","b","c".
+
+4)    Riga 19, nel case 'A', "moltiplica" non è indentato correttamente;
+
+5)    Riga 20, nel case 'A', "break" non è indentato correttamente;
+
+6)    Riga 22, nel case 'B', "dividi" non è indentato correttamente;
+
+7)    Riga 25 nel case 'C', "ins_string" non è indentato correttamente;
+
+8)    Riga 27, non è presente un default all'interno del comando switch, questo è un problema in quanto se l'utente dovesse inserire 
+      in input qualcosa di non gestito all'interno del programma, ad esempio "D", il programma andrebbe diretto alla return 0 della 
+      main function e terminerebbe di botto, sarebbe meglio quindi inserire un ciclo do / while, e in questa casistica inseirire un messaggio
+      di errore per l'utente e richiamare la funzione main, così da ridare la possibiltà all'utente di inserire un input corretto e gestito 
+      dal programma.
+
+9)    Riga 29 - "return 0" non è indentato correttamente;
+
+10)   Riga 46, per ottenere un output più leggibile e pulito sarebbe più corretto inserire "\n" prima della chiusura del virgolettato della
+      stampa;
+
+11.1) Riga 61, "printf" non è indentato correttamente;
+
+11.2) Riga 61, la parola corretta in italiano è "denominatore" non "denumeratore";
+
+12)   Riga 75, "char stringa[10]" non è indentato correttamente.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+       
